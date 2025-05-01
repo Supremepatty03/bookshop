@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BookCardWidget</class>
+ <widget class="QWidget" name="BookCardWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>787</width>
+    <height>426</height>
+   </rect>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QLabel" name="coverLabel">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>150</height>
+      </size>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="textLayout">
+     <item>
+      <widget class="QLabel" name="titleLabel"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="authorLabel"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="priceLabel"/>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="buttonLayout">
+     <item>
+      <widget class="QPushButton" name="detailsButton">
+       <property name="text">
+        <string>Подробнее...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buyButton">
+       <property name="text">
+        <string>В корзину</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

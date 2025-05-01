@@ -1,0 +1,16 @@
+# ninja log v6
+6	916	7654213597647198	build.ninja	e56026b1d2343c31
+26	249	7654213373009737	BD_course_autogen/timestamp	90c1fbf68ccdc042
+26	249	7654213373009737	C:/Users/Вячеслав/Documents/BD_course/BD_course/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/BD_course_autogen/timestamp	90c1fbf68ccdc042
+289	5990	7654213373946141	CMakeFiles/BD_course.dir/registration_service.cpp.obj	98016a44dea9c176
+29	73	7654213359117586	CMakeFiles/clean.additional	baedbe210acaa455
+260	3348	7654213373663255	CMakeFiles/BD_course.dir/mainwindow.cpp.obj	e72bc7db3544a0e9
+73	91	7654213359592674	clean	577b940aee94fbd7
+271	6029	7654213373765303	CMakeFiles/BD_course.dir/db_connector.cpp.obj	e337596add919e8b
+276	6038	7654213373826746	CMakeFiles/BD_course.dir/db_inserter.cpp.obj	a6e9b30feaf78fbf
+250	6217	7654213373570411	CMakeFiles/BD_course.dir/main.cpp.obj	454d44a2ed762ed3
+282	6230	7654213373892438	CMakeFiles/BD_course.dir/db_queries.cpp.obj	c0a2760b50c94714
+265	6531	7654213373721708	CMakeFiles/BD_course.dir/registration_window.cpp.obj	89f7fc9c0e82fc8f
+40	889	7654213597647198	build.ninja	e56026b1d2343c31
+25	56	7654213599258706	CMakeFiles/clean.additional	baedbe210acaa455
+56	76	7654213599580614	clean	577b940aee94fbd7

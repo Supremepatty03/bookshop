@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-e21b270e996132840501.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "BD_course",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "BD_course::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BD_course-Debug-b7fcd03ec3d9705ce8ea.json",
+					"name" : "BD_course",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BD_course_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BD_course_autogen-Debug-398b7e77c238c02f2419.json",
+					"name" : "BD_course_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BD_course_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BD_course_autogen_timestamp_deps-Debug-bae8455bd96c337ba471.json",
+					"name" : "BD_course_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/\u0412\u044f\u0447\u0435\u0441\u043b\u0430\u0432/Documents/BD_course/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug",
+		"source" : "C:/Users/\u0412\u044f\u0447\u0435\u0441\u043b\u0430\u0432/Documents/BD_course/BD_course"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
