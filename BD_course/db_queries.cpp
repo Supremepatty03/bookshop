@@ -12,7 +12,6 @@ QVariant db_queries::ExecuteSelectQuery_SingleData(const QString &queryStr, cons
         return QVariant();
     }
 
-    // Используем позиционный параметр вместо именованного
     query.addBindValue(login);
 
     if (!query.exec()) {
@@ -97,12 +96,13 @@ Book db_queries::parseBook(const QSqlQuery& query){
     Book book;
     book.book_id = query.value(0).toInt();
     book.title = query.value(1).toString();
-    book.type = query.value(2).toString();
-    book.genre = query.value(3).toString();
-    book.price = query.value(4).toInt();
-    book.publisher = query.value(5).toString();
-    book.release_year = query.value(6).toInt();
-    book.coverPath = query.value(7).toString();
+    book.author = query.value(2).toString();
+    book.type = query.value(3).toString();
+    book.genre = query.value(4).toString();
+    book.price = query.value(5).toInt();
+    book.publisher = query.value(6).toString();
+    book.release_year = query.value(7).toInt();
+    book.coverPath = query.value(8).toString();
     return book;
 }
 
@@ -123,24 +123,37 @@ QVector<Book> db_queries::getBooksFromQuery(const QString sqlText,const QVariant
     while (query.next()) {
         books.append(parseBook(query));
     }
+    qDebug() << "Books in cart:" << books.size(); //debug
+    qDebug() << "Running query with params:" << params;
     return books;
 }
 
 QVector<Book> db_queries::getAllBooks() {
-    return getBooksFromQuery("SELECT Инвентарный_номер, Название_книги, Вид_книги, Тематика, Цена, Издательство, Год_издания, Обложка FROM Книга", {});
+    return getBooksFromQuery("SELECT Инвентарный_номер, Название_книги, Автор, Вид_книги, Тематика, Цена, Издательство, Год_издания, Обложка FROM Книга", {});
+}
+Book db_queries::getBookById(int bookID) {
+    QVector<Book> result = getBooksFromQuery(
+        "SELECT Инвентарный_номер, Название_книги, Автор, Вид_книги, Тематика, Цена, Издательство, Год_издания, Обложка FROM Книга WHERE Инвентарный_номер = ?",
+        {bookID}
+        );
+    return result.isEmpty() ? Book{} : result.first();
 }
 QVector<Book> db_queries::getBooksFromCart(int userID) {
-    return getBooksFromQuery(R"(SELECT
-                                Книга.Инвентарный_номер,
-                                Книга.Название_книги,
-                                Книга.Вид_книги
-                                Книга.Тематика
-                                Книга.Цена
-                                Книга.Издательство
-                                Книга.Год_издания
-                                Книга.Обложка
-                                FROM Корзина JOIN Книга ON Корзина.id_книги == Книга.Инвентарный_номер
-                                WHERE Корзина.id_пользователя = ?)", {userID});
+    return getBooksFromQuery(R"(
+    SELECT
+        Книга.Инвентарный_номер,
+        Книга.Название_книги,
+        Книга.Автор,
+        Книга.Вид_книги,
+        Книга.Тематика,
+        Книга.Цена,
+        Книга.Издательство,
+        Книга.Год_издания,
+        Книга.Обложка
+    FROM Корзина
+    JOIN Книга ON Корзина.id_книги = Книга.Инвентарный_номер
+    WHERE Корзина.id_пользователя = ?
+)", {userID});
 }
 
 QString db_queries::getBookInfo(int bookID){
@@ -165,3 +178,54 @@ QString db_queries::getBookInfo(int bookID){
     return info;
 }
 
+bool db_queries::isBookInCart(int userId, int bookId) {
+    QSqlQuery query(db);
+    query.prepare("SELECT COUNT(*) FROM Корзина WHERE id_пользователя = ? AND id_книги = ?");
+    query.addBindValue(userId);
+    query.addBindValue(bookId);
+
+    if (!query.exec()) {
+        qWarning() << "Ошибка проверки корзины:" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        return query.value(0).toInt() > 0;
+    }
+
+    return false;
+}
+
+bool db_queries::incrementBookInCart(int userID, int bookID){
+    QSqlQuery query(db);
+    query.prepare(R"(UPDATE Корзина
+                        SET Количество = Количество + 1
+                        WHERE id_пользователя = ? AND id_книги = ?)");
+    query.addBindValue(userID);
+    query.addBindValue(bookID);
+
+    if (!query.exec()) {
+        qWarning() << "Ошибка увеличения количества в корзине:" << query.lastError().text();
+        return false;
+    }
+
+    return query.numRowsAffected() > 0;
+}
+bool db_queries::removeBookFromCart(int userID, int bookID){
+    if (!db.isOpen() && !db.open()) {
+        qCritical() << "Database connection failed!";
+        return false;
+    }
+    QSqlQuery query(db);
+    if (!query.prepare("DELETE FROM Корзина WHERE id_пользователя = ? AND id_книги = ?")) {
+        qCritical() << "Prepare failed:" << query.lastError().text();
+        return false;
+    }
+    query.addBindValue(userID);
+    query.addBindValue(bookID);
+    if (!query.exec()) {
+        qCritical() << "Execution failed:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}

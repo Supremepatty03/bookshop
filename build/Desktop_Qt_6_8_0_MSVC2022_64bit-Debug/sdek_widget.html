@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Выбор ПВЗ</title>
+  <script src="https://widget.cdek.ru/widget/widjet.js"></script>
+</head>
+<body>
+  <div id="forpvz" style="width:100%; height:600px;"></div>
+  <script>
+    var widjet = new ISDEKWidjet({
+      defaultCity: 'Москва',
+      cityFrom: 'Москва',
+      link: 'forpvz',
+      onChoose: function(info) {
+        alert("Выбран ПВЗ: " + info.PVZ.Address);
+        // Здесь можно передать данные в ваше приложение
+      }
+    });
+  </script>
+</body>
+</html>

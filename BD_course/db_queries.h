@@ -19,10 +19,14 @@ public:
     static QByteArray generateSalt(int length);
     bool verifyPassword(const QString &login, const QString &password);
     QVector<Book> getAllBooks();
+    Book getBookById(int bookID);
     QString getBookInfo(int bookID);
     Book parseBook (const QSqlQuery& query);
     QVector<Book> getBooksFromQuery(const QString sqlText,const QVariantList& params);
     QVector<Book> getBooksFromCart(int userID);
+    bool isBookInCart(int userID, int bookID);
+    bool incrementBookInCart(int userID, int bookID);
+    bool removeBookFromCart(int userID, int bookID);
 private:
     QSqlDatabase &db;
 };

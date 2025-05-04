@@ -13,6 +13,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Sql Core Widgets)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Test)
+find_package(Qt6 REQUIRED COMPONENTS WebEngineWidgets)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -58,7 +59,8 @@ target_link_libraries(BD_course PRIVATE
     Qt6::Sql
     Qt6::Gui
     #Qt6::Test
-    Qt6::Widgets)
+    Qt6::Widgets
+    Qt6::WebEngineWidgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -73,6 +75,8 @@ set_target_properties(BD_course PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/sdek_widget.html
+               ${CMAKE_CURRENT_BINARY_DIR}/sdek_widget.html COPYONLY)
 
 include(GNUInstallDirs)
 install(TARGETS BD_course

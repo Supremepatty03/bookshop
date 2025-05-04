@@ -14,6 +14,13 @@
 			}
 		]
 	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "BD_course_qmlimportscan::@6890427a1f51a3e7e1df"
+		}
+	],
 	"id" : "BD_course_autogen::@6890427a1f51a3e7e1df",
 	"isGeneratorProvided" : true,
 	"name" : "BD_course_autogen",

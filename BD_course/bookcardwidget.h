@@ -16,8 +16,14 @@ public:
     ~BookCardWidget();
     void setBookInfo(const Book &book);
 
+    enum DisplayMode { StoreMode, CartMode, OrderMode };
+    void setMode(DisplayMode mode);
+
 signals:
-    void detailsRequested(int bookId); // для перехода на подробности
+    void detailsRequested(int bookId);
+    void addToCart(int bookID);
+    void removeFromCart(int bookId);
+    void singleOrderRequested(int bookId);
 
 private:
     Ui::BookCardWidget *ui;

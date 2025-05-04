@@ -58,7 +58,8 @@ int db_inserter::insertUser(const QString& login, const QString& password) {
         QSqlQuery insertQuery(db);
         if (!insertQuery.prepare(
                 "INSERT INTO Пользователь (логин, пароль, соль, роль) "
-                "VALUES (:логин, :пароль, :соль, 'покупатель')")) {
+                "VALUES (:логин, :пароль, :соль, 'покупатель')"))
+        {
             qCritical() << "Prepare insert failed:" << insertQuery.lastError().text();
             db.rollback();
             return 4;
@@ -87,3 +88,30 @@ int db_inserter::insertUser(const QString& login, const QString& password) {
         return 4;
     }
 }
+bool db_inserter::putBookInCart(const int userID, const int bookID) {
+    db_queries queryManager(db);
+    qDebug() << "userid = " << userID;
+    if (queryManager.isBookInCart(userID, bookID)) {
+        return queryManager.incrementBookInCart(userID, bookID);
+    } else {
+        QSqlQuery insertQuery(db);
+        if (!insertQuery.prepare(
+                "INSERT INTO Корзина (id_пользователя, id_книги) "
+                "VALUES (:user_id, :book_id)"))
+        {
+            qCritical() << "Prepare insert failed:" << insertQuery.lastError().text();
+            return false;
+        }
+
+        insertQuery.bindValue(":user_id", userID);
+        insertQuery.bindValue(":book_id", bookID);
+
+        if (!insertQuery.exec()) {
+            qCritical() << "Insert failed:" << insertQuery.lastError().text();
+            return false;
+        }
+
+        return true;
+    }
+}
+

@@ -1,0 +1,9 @@
+-rootPath
+C:/Users/User/Documents/BD_course/BD_course
+-cmake-output
+-output-file
+C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/.qt/qml_imports/BD_course_conf.cmake
+-importPath
+C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug
+-importPath
+D:/qt/6.8.0/msvc2022_64/qml

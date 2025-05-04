@@ -26,17 +26,22 @@ public:
     QLabel *coverLabel;
     QVBoxLayout *textLayout;
     QLabel *titleLabel;
+    QLabel *genreLabel;
     QLabel *authorLabel;
     QLabel *priceLabel;
     QVBoxLayout *buttonLayout;
     QPushButton *detailsButton;
-    QPushButton *buyButton;
+    QPushButton *actionButton;
+    QPushButton *singleOrderButton;
 
     void setupUi(QWidget *BookCardWidget)
     {
         if (BookCardWidget->objectName().isEmpty())
             BookCardWidget->setObjectName("BookCardWidget");
         BookCardWidget->resize(787, 426);
+        QFont font;
+        font.setPointSize(12);
+        BookCardWidget->setFont(font);
         horizontalLayout = new QHBoxLayout(BookCardWidget);
         horizontalLayout->setObjectName("horizontalLayout");
         coverLabel = new QLabel(BookCardWidget);
@@ -50,8 +55,18 @@ public:
         textLayout->setObjectName("textLayout");
         titleLabel = new QLabel(BookCardWidget);
         titleLabel->setObjectName("titleLabel");
+        QFont font1;
+        font1.setPointSize(14);
+        font1.setBold(true);
+        font1.setItalic(true);
+        titleLabel->setFont(font1);
 
         textLayout->addWidget(titleLabel);
+
+        genreLabel = new QLabel(BookCardWidget);
+        genreLabel->setObjectName("genreLabel");
+
+        textLayout->addWidget(genreLabel);
 
         authorLabel = new QLabel(BookCardWidget);
         authorLabel->setObjectName("authorLabel");
@@ -73,10 +88,15 @@ public:
 
         buttonLayout->addWidget(detailsButton);
 
-        buyButton = new QPushButton(BookCardWidget);
-        buyButton->setObjectName("buyButton");
+        actionButton = new QPushButton(BookCardWidget);
+        actionButton->setObjectName("actionButton");
 
-        buttonLayout->addWidget(buyButton);
+        buttonLayout->addWidget(actionButton);
+
+        singleOrderButton = new QPushButton(BookCardWidget);
+        singleOrderButton->setObjectName("singleOrderButton");
+
+        buttonLayout->addWidget(singleOrderButton);
 
 
         horizontalLayout->addLayout(buttonLayout);
@@ -89,8 +109,10 @@ public:
 
     void retranslateUi(QWidget *BookCardWidget)
     {
+        genreLabel->setText(QString());
         detailsButton->setText(QCoreApplication::translate("BookCardWidget", "\320\237\320\276\320\264\321\200\320\276\320\261\320\275\320\265\320\265...", nullptr));
-        buyButton->setText(QCoreApplication::translate("BookCardWidget", "\320\222 \320\272\320\276\321\200\320\267\320\270\320\275\321\203", nullptr));
+        actionButton->setText(QCoreApplication::translate("BookCardWidget", "\320\222 \320\272\320\276\321\200\320\267\320\270\320\275\321\203", nullptr));
+        singleOrderButton->setText(QCoreApplication::translate("BookCardWidget", "\320\227\320\260\320\272\320\260\320\267\320\260\321\202\321\214 \320\264\320\276\321\201\321\202\320\260\320\262\320\272\321\203", nullptr));
         (void)BookCardWidget;
     } // retranslateUi
 

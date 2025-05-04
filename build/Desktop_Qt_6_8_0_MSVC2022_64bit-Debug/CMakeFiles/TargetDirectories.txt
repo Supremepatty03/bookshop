@@ -1,4 +1,5 @@
 C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/CMakeFiles/BD_course.dir
+C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/CMakeFiles/BD_course_qmlimportscan.dir
 C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/CMakeFiles/edit_cache.dir
 C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/CMakeFiles/rebuild_cache.dir
 C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/CMakeFiles/list_install_components.dir

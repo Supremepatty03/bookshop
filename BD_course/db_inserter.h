@@ -3,11 +3,13 @@
 #include <QApplication>
 #include <QtSql>
 #include <QSqlQuery>
+#include "book.h"
 class db_inserter
 {
 public:
     explicit db_inserter(QSqlDatabase &database) : db(database) {}
     int insertUser(const QString& username, const QString& password);
+    bool putBookInCart(const int userID, const int bookID);
 private:
     QSqlDatabase &db;
 };
@@ -17,6 +19,7 @@ class UserRepository {
 public:
     explicit UserRepository(QSqlDatabase &database) : db(database) {}
     std::optional<int> getUserId(const QString &username);
+
 private:
     QSqlDatabase &db;
 };

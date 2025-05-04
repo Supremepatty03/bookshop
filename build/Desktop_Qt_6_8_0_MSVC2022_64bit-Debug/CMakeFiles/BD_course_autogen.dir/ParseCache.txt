@@ -2,16 +2,21 @@
 C:/Users/User/Documents/BD_course/BD_course/registration_service.h
 C:/Users/User/Documents/BD_course/BD_course/mainwindow.h
  mmc:Q_OBJECT
+ mdp:C:/Users/User/Documents/BD_course/BD_course/book.h
  mdp:C:/Users/User/Documents/BD_course/BD_course/mainwindow.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QDeadlineTimer
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QFlags
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QHash
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QList
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QMap
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QMutex
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QObject
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QSizeF
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QString
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QStringList
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QUrl
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QVariant
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QWeakPointer
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QtCore
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QtCoreDepends
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/q20algorithm.h
@@ -277,6 +282,7 @@ C:/Users/User/Documents/BD_course/BD_course/mainwindow.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/qxpfunctional.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/qxptype_traits.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/qyieldcpu.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/QPageLayout
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qaction.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qbitmap.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qbrush.h
@@ -285,9 +291,15 @@ C:/Users/User/Documents/BD_course/BD_course/mainwindow.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qfont.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qfontinfo.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qfontmetrics.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qguiapplication.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qguiapplication_platform.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qicon.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qimage.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qinputmethod.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qkeysequence.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpagelayout.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpageranges.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpagesize.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpaintdevice.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpalette.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpixelformat.h
@@ -303,6 +315,17 @@ C:/Users/User/Documents/BD_course/BD_course/mainwindow.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qvalidator.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qwindowdefs.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qwindowdefs_win.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qssl.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qsslcertificate.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qtnetwork-config.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qtnetworkexports.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qtnetworkglobal.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qjsvalue.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qqmlregistration.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qtqml-config.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qtqmlexports.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qtqmlglobal.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQmlIntegration/qqmlintegration.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/QSqlQuery
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/QtSql
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/QtSqlDepends
@@ -323,12 +346,25 @@ C:/Users/User/Documents/BD_course/BD_course/mainwindow.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/qtsqlexports.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/qtsqlglobal.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/qtsqlversion.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qtwebenginecore-config.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qtwebenginecoreglobal.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebengineclientcertificateselection.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginedownloadrequest.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebengineframe.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginepage.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginepermission.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginequotarequest.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineWidgets/QWebEngineView
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineWidgets/qtwebenginewidgetsglobal.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineWidgets/qwebengineview.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/QApplication
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/QMainWindow
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractitemdelegate.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractitemview.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractscrollarea.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractslider.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractspinbox.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qapplication.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qcombobox.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qframe.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qlistview.h
@@ -519,17 +555,22 @@ C:/Users/User/Documents/BD_course/BD_course/db_inserter.h
 C:/Users/User/Documents/BD_course/BD_course/db_queries.h
 C:/Users/User/Documents/BD_course/BD_course/registration_window.h
  mmc:Q_OBJECT
+ mdp:C:/Users/User/Documents/BD_course/BD_course/book.h
  mdp:C:/Users/User/Documents/BD_course/BD_course/mainwindow.h
  mdp:C:/Users/User/Documents/BD_course/BD_course/registration_window.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QDeadlineTimer
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QFlags
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QHash
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QList
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QMap
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QMutex
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QObject
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QSizeF
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QString
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QStringList
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QUrl
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QVariant
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QWeakPointer
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QtCore
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/QtCoreDepends
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/q20algorithm.h
@@ -795,6 +836,7 @@ C:/Users/User/Documents/BD_course/BD_course/registration_window.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/qxpfunctional.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/qxptype_traits.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtCore/qyieldcpu.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/QPageLayout
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qaction.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qbitmap.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qbrush.h
@@ -803,9 +845,15 @@ C:/Users/User/Documents/BD_course/BD_course/registration_window.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qfont.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qfontinfo.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qfontmetrics.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qguiapplication.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qguiapplication_platform.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qicon.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qimage.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qinputmethod.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qkeysequence.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpagelayout.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpageranges.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpagesize.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpaintdevice.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpalette.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qpixelformat.h
@@ -821,6 +869,17 @@ C:/Users/User/Documents/BD_course/BD_course/registration_window.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qvalidator.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qwindowdefs.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtGui/qwindowdefs_win.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qssl.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qsslcertificate.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qtnetwork-config.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qtnetworkexports.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtNetwork/qtnetworkglobal.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qjsvalue.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qqmlregistration.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qtqml-config.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qtqmlexports.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQml/qtqmlglobal.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtQmlIntegration/qqmlintegration.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/QSqlQuery
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/QtSql
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/QtSqlDepends
@@ -841,12 +900,25 @@ C:/Users/User/Documents/BD_course/BD_course/registration_window.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/qtsqlexports.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/qtsqlglobal.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtSql/qtsqlversion.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qtwebenginecore-config.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qtwebenginecoreglobal.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebengineclientcertificateselection.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginedownloadrequest.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebengineframe.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginepage.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginepermission.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginequotarequest.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineWidgets/QWebEngineView
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineWidgets/qtwebenginewidgetsglobal.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWebEngineWidgets/qwebengineview.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/QApplication
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/QMainWindow
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractitemdelegate.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractitemview.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractscrollarea.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractslider.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractspinbox.h
+ mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qapplication.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qcombobox.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qframe.h
  mdp:D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qlistview.h
@@ -872,7 +944,6 @@ C:/Users/User/Documents/BD_course/BD_course/db_queries.cpp
 C:/Users/User/Documents/BD_course/BD_course/main.cpp
 C:/Users/User/Documents/BD_course/BD_course/mainwindow.cpp
  uic:./ui_mainwindow.h
- uic:ui_registration_window.h
 C:/Users/User/Documents/BD_course/BD_course/registration_service.cpp
 C:/Users/User/Documents/BD_course/BD_course/registration_window.cpp
  uic:ui_registration_window.h

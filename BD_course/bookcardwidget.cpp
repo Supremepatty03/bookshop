@@ -1,18 +1,18 @@
 #include "bookcardwidget.h"
-#include "ui_bookcardwidget.h"
 
+#include "ui_bookcardwidget.h"
 BookCardWidget::BookCardWidget(QWidget *parent)
-    : QWidget(parent), ui(new Ui::BookCardWidget)
+    : QWidget(parent), ui(new Ui::BookCardWidget), m_bookId(-1)
 {
     ui->setupUi(this);
 
-    // Устанавливаем размер и поведение
-    this->setMinimumHeight(150);
-    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-
-    connect(ui->detailsButton, &QPushButton::clicked, this, [=]() {
+    // Кнопка "Подробнее…" всегда
+    connect(ui->detailsButton, &QPushButton::clicked, this, [=](){
         emit detailsRequested(m_bookId);
     });
+
+    // По умолчанию — показываем режим магазина
+    setMode(StoreMode);
 }
 
 BookCardWidget::~BookCardWidget() {
@@ -22,6 +22,7 @@ BookCardWidget::~BookCardWidget() {
 void BookCardWidget::setBookInfo(const Book &book) {
     ui->titleLabel->setText(book.title);
     ui->authorLabel->setText(book.author);
+    ui->genreLabel->setText(book.genre);
     ui->priceLabel->setText(QString::number(book.price) + " ₽");
     m_bookId = book.book_id;
     this->setStyleSheet("QWidget { padding: 10 px; }");
@@ -33,4 +34,36 @@ void BookCardWidget::setBookInfo(const Book &book) {
         ui->coverLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     }
 }
+void BookCardWidget::setMode(DisplayMode mode) {
+    // Отключаем старые слоты
+    ui->actionButton->disconnect();
 
+    switch(mode) {
+    case StoreMode:
+        ui->actionButton->setText("В корзину");
+        connect(ui->actionButton, &QPushButton::clicked, this, [=](){
+            emit addToCart(m_bookId);
+        });
+        ui->actionButton->setVisible(true);
+        ui->singleOrderButton->setVisible(false);
+        break;
+
+    case CartMode:
+        ui->actionButton->setText("Удалить из корзины");
+        connect(ui->actionButton, &QPushButton::clicked, this, [=](){
+            emit removeFromCart(m_bookId);
+        });
+        ui->actionButton->setVisible(true);
+        ui->singleOrderButton->setVisible(true);
+        connect(ui->singleOrderButton, &QPushButton::clicked, this, [=]() {
+            emit singleOrderRequested(m_bookId);
+        });
+        break;
+
+    case OrderMode:
+        // В режиме заказов кнопки "умного действия" нет
+        ui->actionButton->setVisible(false);
+        ui->singleOrderButton->setVisible(false);
+        break;
+    }
+}

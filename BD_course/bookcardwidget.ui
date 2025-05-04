@@ -10,6 +10,11 @@
     <height>426</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QLabel" name="coverLabel">
@@ -27,7 +32,22 @@
    <item>
     <layout class="QVBoxLayout" name="textLayout">
      <item>
-      <widget class="QLabel" name="titleLabel"/>
+      <widget class="QLabel" name="titleLabel">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="genreLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="authorLabel"/>
@@ -47,9 +67,16 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="buyButton">
+      <widget class="QPushButton" name="actionButton">
        <property name="text">
         <string>В корзину</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="singleOrderButton">
+       <property name="text">
+        <string>Заказать доставку</string>
        </property>
       </widget>
      </item>
