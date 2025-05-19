@@ -6,9 +6,12 @@
 #include "db_inserter.h"
 #include "db_queries.h"
 #include "bookcardwidget.h"
+#include "./ui_bookcardwidget.h"
 #include <QMessageBox>
 #include <QWebEngineView>
 #include <QWebEngineSettings>
+#include "mapdialog.h"
+
 
 MainWindow::MainWindow(QWidget *parent, QSqlDatabase &database)
     : QMainWindow(parent),
@@ -18,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent, QSqlDatabase &database)
     ui->setupUi(this);
     connect(ui->lobbyButton, &QPushButton::clicked, this, &MainWindow::on_lobbyButton);
     connect(ui->cartButton, &QPushButton::clicked, this, &MainWindow::on_cartButton);
+    connect(ui->profileButton, &QPushButton::clicked, this, &MainWindow::on_profileButton);
 }
 MainWindow::~MainWindow()
 {
@@ -116,7 +120,7 @@ void MainWindow::on_addToCart(int bookID){
         QMessageBox::information(
             this,
             "Информация о добавлении",          // заголовок окна
-            "Ошибка добавления!"  // сообщение
+            "Ошибка добавления"  // сообщение
             );
     }
     else{
@@ -155,12 +159,15 @@ void MainWindow::showBooksForOrder(const QVector<Book>& booksToOrder) {
 
         ui->verticalLayout_9->addWidget(card);
     }
-
     ui->verticalLayout_9->addStretch();
 }
 void MainWindow::on_singleOrderRequested(int bookID) {
     ui->stackedWidget_2->setCurrentWidget(ui->page_order);
-
+    connect(ui->addNewAdressButton, &QPushButton::clicked, this, &MainWindow::on_addNewAdressButton);
+    connect(ui->orderCancelButton, &QPushButton::clicked, this, &MainWindow::on_orderCancelButton);
+    connect(ui->confirmOrderButton, &QPushButton::clicked, this, [=]() {
+        on_confirmOrderButton(bookID);  // bookID известен тут
+    });
     db_queries queryManager(db);
     QVector<Book> books;
     books.append(queryManager.getBookById(bookID));
@@ -173,12 +180,132 @@ void MainWindow::on_singleOrderRequested(int bookID) {
         webView->deleteLater();
         webView = nullptr;
     }
+}
+QString MainWindow::on_addNewAdressButton() {
+    MapDialog dlg(this);
+    if (dlg.exec() == QDialog::Accepted) {
+        QString selected = dlg.getSelectedAddress();
+        qDebug() << "Выбранный адрес:" << selected;
+        ui->currentAddressLine->setText(selected);
+        return selected;
+    }
+}
+void MainWindow::on_orderCancelButton(){
 
-    webView = new QWebEngineView(this);
-    webView->page()->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
-    webView->page()->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-    webView->load(QUrl::fromLocalFile(htmlPath));
-    ui->verticalLayout_9->addWidget(webView);
-    webView->setStyleSheet("background-color: lightblue;"); //debug
-    qDebug() << "HTML loaded from:" << htmlPath;
+    ui->stackedWidget_2->setCurrentWidget(ui->page_4);
+}
+void MainWindow::on_confirmOrderButton(int bookID){
+    db_inserter insertManager(db);
+    QString baseText = "Пока отсутствует";
+    if (ui->currentAddressLine->text() == "" || ui->currentAddressLine->text() == baseText) {
+        QMessageBox::warning(this, "Ошибка", "Сначала выберите адрес на карте!");
+        return;
+    }
+    if(!insertManager.putBookInOrder(userID, bookID))
+    {
+        QMessageBox::information(
+            this,
+            "Информация о заказе",          // заголовок окна
+            "Ошибка заказа"  // сообщение
+            );
+    }
+    else{
+        QMessageBox::information(
+            this,
+            "Информация о заказе",          // заголовок окна
+            "Заказ прошел успешно!"  // сообщение
+            );
+        on_cartButton();
+    }
+}
+void MainWindow::loadProfileCombos() {
+    QSqlQuery cityQuery("SELECT Название_города FROM Город", db);
+    while (cityQuery.next()) {
+        ui->cityCombo->addItem(cityQuery.value(0).toString());
+    }
+
+    QSqlQuery categoryQuery("SELECT Категория FROM Категория", db);
+    while (categoryQuery.next()) {
+        ui->categoryCombo->addItem(categoryQuery.value(0).toString());
+    }
+}
+void MainWindow::saveUserProfile() {
+    QString name = ui->nameLine->text().trimmed();
+    QString lastName = ui->lastNameLine->text().trimmed();
+    QString secondName = ui->secondNameLine->text().trimmed();
+    QString phone = ui->phoneLine->text().trimmed();
+    QString city = ui->cityCombo->currentText().trimmed();
+    QString category = ui->categoryCombo->currentText().trimmed();
+
+    if (name.isEmpty() || lastName.isEmpty() || phone.isEmpty()) {
+        QMessageBox::warning(this, "Ошибка", "Заполните все обязательные поля!");
+        return;
+    }
+
+    db_inserter inserter(db);
+    if (!inserter.saveUserProfile(userID, name, lastName, secondName, phone, city, category)) {
+        QMessageBox::critical(this, "Ошибка", "Не удалось сохранить профиль!");
+        return;
+    }
+
+    QMessageBox::information(this, "Успех", "Профиль сохранён!");
+}
+void MainWindow::on_profileButton() {
+    connect(ui->saveProfileButton, &QPushButton::clicked, this, &MainWindow::saveUserProfile);
+    connect(ui->outProfileButton, &QPushButton::clicked, this, &MainWindow::on_outProfileButton);
+    connect(ui->orderAllButton_2, &QPushButton::clicked, this, &MainWindow::showUserOrders);
+    loadProfileCombos();
+
+    db_queries queryManager(db);
+    QMap<QString, QString> profileData;
+
+    if (queryManager.getUserProfile(userID, profileData)) {
+        ui->nameLine->setText(profileData["name"]);
+        ui->lastNameLine->setText(profileData["lastName"]);
+        ui->secondNameLine->setText(profileData["secondName"]);
+        ui->phoneLine->setText(profileData["phone"]);
+
+        int cityIndex = ui->cityCombo->findText(profileData["city"]);
+        if (cityIndex >= 0) ui->cityCombo->setCurrentIndex(cityIndex);
+
+        int categoryIndex = ui->categoryCombo->findText(profileData["category"]);
+        if (categoryIndex >= 0) ui->categoryCombo->setCurrentIndex(categoryIndex);
+    } else {
+        QMessageBox::information(this, "Профиль", "Профиль не найден. Вы можете заполнить его и сохранить.");
+    }
+
+    ui->stackedWidget_2->setCurrentWidget(ui->page_profile);
+}
+void MainWindow::on_outProfileButton(){
+    ui->stackedWidget_2->setCurrentWidget(ui->page_3);
+}
+void MainWindow::showUserOrders()
+{
+    connect(ui->returnFromUsersOrderButton, &QPushButton::clicked, this, &MainWindow::on_returnFromUsersOrderButton);
+    ui->stackedWidget_2->setCurrentWidget(ui->page_usersOrders);
+    QLayoutItem *child;
+    while ((child = ui->verticalLayout_12->takeAt(0)) != nullptr) {
+        if (QWidget *w = child->widget()) {
+            delete w;
+        }
+        delete child;
+    }
+
+    db_queries queryManager(db);
+    auto purchases = db_queries(db).getUserPurchases(userID);
+    for (const auto &row : purchases) {
+        BookCardWidget *card = new BookCardWidget(this);
+        card->setMode(BookCardWidget::ArchiveMode);
+        card->findChild<QLabel*>("titleLabel")->setText(row[1]);
+        card->findChild<QLabel*>("authorLabel")->setText(row[2]);
+        card->findChild<QLabel*>("genreLabel")->setText(QString());
+        card->findChild<QLabel*>("priceLabel")->setText(row[3] + " ₽");
+        card->findChild<QLabel*>("orderDateLabel")->setText("Дата заказа: " + row[4]);
+
+        ui->verticalLayout_12->addWidget(card);
+    }
+    ui->verticalLayout_12->addStretch();
+}
+void MainWindow::on_returnFromUsersOrderButton(){
+    ui->stackedWidget_2->setCurrentWidget(ui->page_profile);
 }

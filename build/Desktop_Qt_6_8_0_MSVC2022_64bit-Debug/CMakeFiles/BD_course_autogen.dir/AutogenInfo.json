@@ -1498,6 +1498,12 @@
 			null
 		],
 		[
+			"C:/Users/User/Documents/BD_course/BD_course/mapdialog.h",
+			"MU",
+			"EWIEGA46WW/moc_mapdialog.cpp",
+			null
+		],
+		[
 			"C:/Users/User/Documents/BD_course/BD_course/registration_service.h",
 			"MU",
 			"EWIEGA46WW/moc_registration_service.cpp",
@@ -1617,6 +1623,11 @@
 		[ "C:/Users/User/Documents/BD_course/BD_course/main.cpp", "MU", null ],
 		[
 			"C:/Users/User/Documents/BD_course/BD_course/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/User/Documents/BD_course/BD_course/mapdialog.cpp",
 			"MU",
 			null
 		],

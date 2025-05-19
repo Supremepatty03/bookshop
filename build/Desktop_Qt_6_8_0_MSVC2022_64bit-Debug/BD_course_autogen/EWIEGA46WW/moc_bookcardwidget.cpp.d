@@ -1,5 +1,6 @@
 C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/BD_course_autogen/EWIEGA46WW/moc_bookcardwidget.cpp: C:/Users/User/Documents/BD_course/BD_course/bookcardwidget.h \
   C:/Users/User/Documents/BD_course/BD_course/book.h \
+  D:/qt/6.8.0/msvc2022_64/include/QtCore/QDate \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/q20functional.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/q20iterator.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/q20memory.h \
@@ -19,6 +20,7 @@ C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/BD
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qbytearrayalgorithms.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qbytearraylist.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qbytearrayview.h \
+  D:/qt/6.8.0/msvc2022_64/include/QtCore/qcalendar.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qchar.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qcompare.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qcompare_impl.h \
@@ -35,6 +37,7 @@ C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/BD
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qcoreevent.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qdarwinhelpers.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qdatastream.h \
+  D:/qt/6.8.0/msvc2022_64/include/QtCore/qdatetime.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qdeadlinetimer.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qdebug.h \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/qelapsedtimer.h \

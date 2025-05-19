@@ -41,6 +41,7 @@ void BookCardWidget::setMode(DisplayMode mode) {
     switch(mode) {
     case StoreMode:
         ui->actionButton->setText("В корзину");
+        ui->orderDateLabel->setVisible(false);
         connect(ui->actionButton, &QPushButton::clicked, this, [=](){
             emit addToCart(m_bookId);
         });
@@ -50,6 +51,7 @@ void BookCardWidget::setMode(DisplayMode mode) {
 
     case CartMode:
         ui->actionButton->setText("Удалить из корзины");
+        ui->orderDateLabel->setVisible(false);
         connect(ui->actionButton, &QPushButton::clicked, this, [=](){
             emit removeFromCart(m_bookId);
         });
@@ -61,9 +63,16 @@ void BookCardWidget::setMode(DisplayMode mode) {
         break;
 
     case OrderMode:
-        // В режиме заказов кнопки "умного действия" нет
         ui->actionButton->setVisible(false);
         ui->singleOrderButton->setVisible(false);
+        ui->orderDateLabel->setVisible(false);
+        break;
+
+    case ArchiveMode:
+        ui->actionButton->setVisible(false);
+        ui->singleOrderButton->setVisible(false);
+        ui->orderDateLabel->setVisible(true);
         break;
     }
+
 }

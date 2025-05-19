@@ -20,6 +20,9 @@ public:
     ~MainWindow();
     void refreshCart();
     void showBooksForOrder(const QVector<Book>& booksToOrder);
+    void loadProfileCombos();
+    void saveUserProfile();
+    void showUserOrders();
 private:
     Ui::MainWindow *ui;
     int userID;
@@ -33,6 +36,11 @@ public slots:
     void on_addToCart(int bookID);
     void on_removeFromCart(int bookId);
     void on_singleOrderRequested(int bookID);
-
+    QString on_addNewAdressButton ();
+    void on_orderCancelButton();
+    void on_confirmOrderButton(int bookID);
+    void on_profileButton();
+    void on_outProfileButton();
+    void on_returnFromUsersOrderButton();
 };
 #endif // MAINWINDOW_H

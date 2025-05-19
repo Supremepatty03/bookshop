@@ -16,7 +16,7 @@ public:
     ~BookCardWidget();
     void setBookInfo(const Book &book);
 
-    enum DisplayMode { StoreMode, CartMode, OrderMode };
+    enum DisplayMode { StoreMode, CartMode, OrderMode, ArchiveMode };
     void setMode(DisplayMode mode);
 
 signals:

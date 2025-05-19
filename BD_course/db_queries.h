@@ -27,6 +27,8 @@ public:
     bool isBookInCart(int userID, int bookID);
     bool incrementBookInCart(int userID, int bookID);
     bool removeBookFromCart(int userID, int bookID);
+    bool getUserProfile(int userID, QMap<QString, QString>& profileData);
+    QVector<Book> getUserPurchases(int userID);
 private:
     QSqlDatabase &db;
 };

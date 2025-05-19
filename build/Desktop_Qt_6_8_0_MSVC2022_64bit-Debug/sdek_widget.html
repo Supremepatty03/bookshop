@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Выбор ПВЗ</title>
-  <script src="https://widget.cdek.ru/widget/widjet.js"></script>
+    <title>Выбор адреса</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map { height: 90vh; }
+        #info { padding: 10px; font-size: 16px; }
+    </style>
 </head>
 <body>
-  <div id="forpvz" style="width:100%; height:600px;"></div>
-  <script>
-    var widjet = new ISDEKWidjet({
-      defaultCity: 'Москва',
-      cityFrom: 'Москва',
-      link: 'forpvz',
-      onChoose: function(info) {
-        alert("Выбран ПВЗ: " + info.PVZ.Address);
-        // Здесь можно передать данные в ваше приложение
-      }
+
+<div id="map"></div>
+<div id="info">Кликните по карте для выбора адреса</div>
+
+<script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+<script>
+    let bridge = null;
+
+    new QWebChannel(qt.webChannelTransport, function(channel) {
+        bridge = channel.objects.bridge;
+        console.log("WebChannel установлен");
     });
-  </script>
+
+    const map = L.map('map').setView([55.75, 37.62], 10);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    let marker;
+
+    map.on('click', function(e) {
+        if (marker) map.removeLayer(marker);
+        marker = L.marker(e.latlng).addTo(map);
+
+        const coords = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
+        document.getElementById("info").innerHTML = `Вы выбрали: ${coords}`;
+
+        if (bridge && bridge.receiveCoords) {
+            console.log("Передаю координаты:", coords);
+            bridge.receiveCoords(coords);
+        }
+    });
+</script>
+
 </body>
 </html>

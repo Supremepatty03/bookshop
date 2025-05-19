@@ -33,6 +33,7 @@ public:
     QPushButton *detailsButton;
     QPushButton *actionButton;
     QPushButton *singleOrderButton;
+    QLabel *orderDateLabel;
 
     void setupUi(QWidget *BookCardWidget)
     {
@@ -98,6 +99,17 @@ public:
 
         buttonLayout->addWidget(singleOrderButton);
 
+        orderDateLabel = new QLabel(BookCardWidget);
+        orderDateLabel->setObjectName("orderDateLabel");
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(orderDateLabel->sizePolicy().hasHeightForWidth());
+        orderDateLabel->setSizePolicy(sizePolicy);
+        orderDateLabel->setMaximumSize(QSize(16777215, 30));
+
+        buttonLayout->addWidget(orderDateLabel);
+
 
         horizontalLayout->addLayout(buttonLayout);
 
@@ -113,6 +125,7 @@ public:
         detailsButton->setText(QCoreApplication::translate("BookCardWidget", "\320\237\320\276\320\264\321\200\320\276\320\261\320\275\320\265\320\265...", nullptr));
         actionButton->setText(QCoreApplication::translate("BookCardWidget", "\320\222 \320\272\320\276\321\200\320\267\320\270\320\275\321\203", nullptr));
         singleOrderButton->setText(QCoreApplication::translate("BookCardWidget", "\320\227\320\260\320\272\320\260\320\267\320\260\321\202\321\214 \320\264\320\276\321\201\321\202\320\260\320\262\320\272\321\203", nullptr));
+        orderDateLabel->setText(QCoreApplication::translate("BookCardWidget", "TextLabel", nullptr));
         (void)BookCardWidget;
     } // retranslateUi
 

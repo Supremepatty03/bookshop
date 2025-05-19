@@ -1,5 +1,6 @@
 C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/BD_course_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/User/Documents/BD_course/BD_course/mainwindow.h \
   C:/Users/User/Documents/BD_course/BD_course/book.h \
+  D:/qt/6.8.0/msvc2022_64/include/QtCore/QDate \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/QDeadlineTimer \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/QFlags \
   D:/qt/6.8.0/msvc2022_64/include/QtCore/QHash \

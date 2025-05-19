@@ -10,6 +10,10 @@ public:
     explicit db_inserter(QSqlDatabase &database) : db(database) {}
     int insertUser(const QString& username, const QString& password);
     bool putBookInCart(const int userID, const int bookID);
+    bool putBookInOrder(const int userID, const int bookID);
+    bool saveUserProfile(int userID, const QString& name, const QString& lastName,
+                         const QString& secondName, const QString& phone,
+                         const QString& city, const QString& category);
 private:
     QSqlDatabase &db;
 };

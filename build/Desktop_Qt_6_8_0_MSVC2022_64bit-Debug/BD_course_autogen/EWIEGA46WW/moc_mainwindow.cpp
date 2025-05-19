@@ -46,7 +46,13 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_addToCart",
     "on_removeFromCart",
     "bookId",
-    "on_singleOrderRequested"
+    "on_singleOrderRequested",
+    "on_addNewAdressButton",
+    "on_orderCancelButton",
+    "on_confirmOrderButton",
+    "on_profileButton",
+    "on_outProfileButton",
+    "on_returnFromUsersOrderButton"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -59,7 +65,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -67,13 +73,19 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   56,    2, 0x0a,    1 /* Public */,
-       4,    1,   59,    2, 0x0a,    3 /* Public */,
-       6,    0,   62,    2, 0x0a,    5 /* Public */,
-       7,    0,   63,    2, 0x0a,    6 /* Public */,
-       8,    1,   64,    2, 0x0a,    7 /* Public */,
-       9,    1,   67,    2, 0x0a,    9 /* Public */,
-      11,    1,   70,    2, 0x0a,   11 /* Public */,
+       1,    1,   92,    2, 0x0a,    1 /* Public */,
+       4,    1,   95,    2, 0x0a,    3 /* Public */,
+       6,    0,   98,    2, 0x0a,    5 /* Public */,
+       7,    0,   99,    2, 0x0a,    6 /* Public */,
+       8,    1,  100,    2, 0x0a,    7 /* Public */,
+       9,    1,  103,    2, 0x0a,    9 /* Public */,
+      11,    1,  106,    2, 0x0a,   11 /* Public */,
+      12,    0,  109,    2, 0x0a,   13 /* Public */,
+      13,    0,  110,    2, 0x0a,   14 /* Public */,
+      14,    1,  111,    2, 0x0a,   15 /* Public */,
+      15,    0,  114,    2, 0x0a,   17 /* Public */,
+      16,    0,  115,    2, 0x0a,   18 /* Public */,
+      17,    0,  116,    2, 0x0a,   19 /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -83,6 +95,12 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void, QMetaType::Int,    5,
     QMetaType::Void, QMetaType::Int,   10,
     QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::QString,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -114,7 +132,20 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_singleOrderRequested'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_addNewAdressButton'
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'on_orderCancelButton'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_confirmOrderButton'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_profileButton'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_outProfileButton'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_returnFromUsersOrderButton'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -132,6 +163,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->on_addToCart((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->on_removeFromCart((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 6: _t->on_singleOrderRequested((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 7: { QString _r = _t->on_addNewAdressButton();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 8: _t->on_orderCancelButton(); break;
+        case 9: _t->on_confirmOrderButton((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 10: _t->on_profileButton(); break;
+        case 11: _t->on_outProfileButton(); break;
+        case 12: _t->on_returnFromUsersOrderButton(); break;
         default: ;
         }
     }
@@ -156,13 +194,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 13)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 7;
+        _id -= 13;
     }
     return _id;
 }

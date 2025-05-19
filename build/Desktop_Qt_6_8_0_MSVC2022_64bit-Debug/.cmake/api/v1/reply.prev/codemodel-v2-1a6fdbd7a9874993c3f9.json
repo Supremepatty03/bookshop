@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-3eed9e019c29c2e23948.json",
+					"jsonFile" : "directory-.-Debug-b96e275cd9bbee8f233c.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "BD_course::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-BD_course-Debug-db8cc6ffbd28b24bce1e.json",
+					"jsonFile" : "target-BD_course-Debug-9eb40feecc9c232d4f7b.json",
 					"name" : "BD_course",
 					"projectIndex" : 0
 				},
@@ -58,7 +58,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "BD_course_qmlimportscan::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-BD_course_qmlimportscan-Debug-9fee923658fcccd69990.json",
+					"jsonFile" : "target-BD_course_qmlimportscan-Debug-179f9299e7c8dd237c57.json",
 					"name" : "BD_course_qmlimportscan",
 					"projectIndex" : 0
 				}

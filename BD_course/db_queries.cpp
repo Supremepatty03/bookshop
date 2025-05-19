@@ -199,7 +199,7 @@ bool db_queries::isBookInCart(int userId, int bookId) {
 bool db_queries::incrementBookInCart(int userID, int bookID){
     QSqlQuery query(db);
     query.prepare(R"(UPDATE Корзина
-                        SET Количество = Количество + 1
+                        SET количество = количество + 1
                         WHERE id_пользователя = ? AND id_книги = ?)");
     query.addBindValue(userID);
     query.addBindValue(bookID);
@@ -228,4 +228,70 @@ bool db_queries::removeBookFromCart(int userID, int bookID){
         return false;
     }
     return true;
+}
+bool db_queries::getUserProfile(int userID, QMap<QString, QString>& profileData) {
+    QSqlQuery query(db);
+    query.prepare(R"(
+        SELECT Фамилия, Имя, Отчество, Город, Телефон, Категория
+        FROM Покупатель
+        WHERE id_пользователя = :userID
+    )");
+
+    query.bindValue(":userID", userID);
+
+    if (!query.exec() || !query.next()) {
+        return false;
+    }
+
+    profileData["lastName"] = query.value(0).toString();
+    profileData["name"] = query.value(1).toString();
+    profileData["secondName"] = query.value(2).toString();
+    profileData["city"] = query.value(3).toString();
+    profileData["phone"] = query.value(4).toString();
+    profileData["category"] = query.value(5).toString();
+
+    return true;
+}
+
+QVector<Book> db_queries::getUserPurchases(int userID) {
+    QVector<Book> list;
+    QSqlQuery query(db);
+
+    const QString sql = R"(
+        SELECT k.Инвентарный_номер,
+               k.Название_книги,
+               k.Автор,
+               k.Вид_книги,
+               k.Цена,
+               k.Обложка,
+               kup.Дата_покупки
+          FROM Книга_у_покупателя kup
+          JOIN Книга k ON kup.Книга = k.Инвентарный_номер
+         WHERE kup.id_пользователя = :userID
+         ORDER BY kup.Дата_покупки DESC
+    )";
+
+    if (!query.prepare(sql)) {
+        qWarning() << "getUserPurchases prepare error:" << query.lastError().text();
+        return list;
+    }
+    query.bindValue(":userID", userID);
+
+    if (!query.exec()) {
+        qWarning() << "getUserPurchases exec error:" << query.lastError().text();
+        return list;
+    }
+
+    while (query.next()) {
+        Book b;
+        b.book_id   = query.value(0).toInt();
+        b.title     = query.value(1).toString();
+        b.author    = query.value(2).toString();
+        b.genre     = query.value(3).toString();  // или берите из другого поля
+        b.price     = query.value(4).toDouble();
+        b.coverPath = query.value(5).toString();
+        b.orderDate = QDate::fromString(query.value(6).toString(), Qt::ISODate);
+        list.append(b);
+    }
+    return list;
 }

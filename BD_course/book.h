@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QDate>
 #ifndef BOOK_H
 #define BOOK_H
 
@@ -13,6 +14,7 @@ struct Book
     QString publisher;
     int release_year;
     QString coverPath;
+    QDate orderDate;
 };
 
 #endif // BOOK_H

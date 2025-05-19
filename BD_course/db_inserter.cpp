@@ -114,4 +114,59 @@ bool db_inserter::putBookInCart(const int userID, const int bookID) {
         return true;
     }
 }
+bool db_inserter::putBookInOrder(const int userID, const int bookID) {
+    QSqlQuery query(db);
+    QString date = QDate::currentDate().toString(Qt::ISODate);
+
+    if (!query.prepare(R"(
+        INSERT INTO Книга_у_покупателя (id_пользователя, Книга, Дата_покупки)
+        VALUES (:user_id, :book_id, :purchase_date)
+    )")) {
+        qCritical() << "Ошибка подготовки запроса:" << query.lastError().text();
+        return false;
+    }
+
+    query.bindValue(":user_id", userID);
+    query.bindValue(":book_id", bookID);
+    query.bindValue(":purchase_date", date);
+
+    if (!query.exec()) {
+        qCritical() << "Ошибка вставки в Книга_у_покупателя:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+bool db_inserter::saveUserProfile(int userID, const QString& name, const QString& lastName,
+                                  const QString& secondName, const QString& phone,
+                                  const QString& city, const QString& category)
+{
+    QSqlQuery query(db);
+    query.prepare(R"(
+        INSERT INTO Покупатель (Фамилия, Имя, Отчество, Город, Телефон, Категория, id_пользователя)
+        VALUES (:lastName, :firstName, :secondName, :city, :phone, :category, :userID)
+        ON CONFLICT(id_пользователя) DO UPDATE SET
+            Фамилия = excluded.Фамилия,
+            Имя = excluded.Имя,
+            Отчество = excluded.Отчество,
+            Город = excluded.Город,
+            Телефон = excluded.Телефон,
+            Категория = excluded.Категория;
+    )");
+
+    query.bindValue(":lastName", lastName);
+    query.bindValue(":firstName", name);
+    query.bindValue(":secondName", secondName);
+    query.bindValue(":city", city);
+    query.bindValue(":phone", phone);
+    query.bindValue(":category", category);
+    query.bindValue(":userID", userID);
+
+    if (!query.exec()) {
+        qWarning() << "Ошибка сохранения профиля:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
 

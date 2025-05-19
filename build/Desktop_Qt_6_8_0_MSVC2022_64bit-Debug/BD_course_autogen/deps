@@ -50,6 +50,8 @@ BD_course_autogen/timestamp: \
 	C:/Users/User/Documents/BD_course/BD_course/main.cpp \
 	C:/Users/User/Documents/BD_course/BD_course/mainwindow.cpp \
 	C:/Users/User/Documents/BD_course/BD_course/mainwindow.h \
+	C:/Users/User/Documents/BD_course/BD_course/mapdialog.cpp \
+	C:/Users/User/Documents/BD_course/BD_course/mapdialog.h \
 	C:/Users/User/Documents/BD_course/BD_course/registration_service.cpp \
 	C:/Users/User/Documents/BD_course/BD_course/registration_service.h \
 	C:/Users/User/Documents/BD_course/BD_course/registration_window.cpp \
@@ -60,9 +62,13 @@ BD_course_autogen/timestamp: \
 	C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/CMakeFiles/3.31.0-rc2/CMakeCXXCompiler.cmake \
 	C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/CMakeFiles/3.31.0-rc2/CMakeRCCompiler.cmake \
 	C:/Users/User/Documents/BD_course/build/Desktop_Qt_6_8_0_MSVC2022_64bit-Debug/CMakeFiles/3.31.0-rc2/CMakeSystem.cmake \
+	D:/qt/6.8.0/msvc2022_64/include/QtCore/QDate \
 	D:/qt/6.8.0/msvc2022_64/include/QtCore/QDeadlineTimer \
+	D:/qt/6.8.0/msvc2022_64/include/QtCore/QDebug \
+	D:/qt/6.8.0/msvc2022_64/include/QtCore/QFile \
 	D:/qt/6.8.0/msvc2022_64/include/QtCore/QFlags \
 	D:/qt/6.8.0/msvc2022_64/include/QtCore/QHash \
+	D:/qt/6.8.0/msvc2022_64/include/QtCore/QJsonValue \
 	D:/qt/6.8.0/msvc2022_64/include/QtCore/QList \
 	D:/qt/6.8.0/msvc2022_64/include/QtCore/QMap \
 	D:/qt/6.8.0/msvc2022_64/include/QtCore/QMutex \
@@ -402,6 +408,11 @@ BD_course_autogen/timestamp: \
 	D:/qt/6.8.0/msvc2022_64/include/QtSql/qtsqlexports.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtSql/qtsqlglobal.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtSql/qtsqlversion.h \
+	D:/qt/6.8.0/msvc2022_64/include/QtWebChannel/QWebChannel \
+	D:/qt/6.8.0/msvc2022_64/include/QtWebChannel/qtwebchannelexports.h \
+	D:/qt/6.8.0/msvc2022_64/include/QtWebChannel/qwebchannel.h \
+	D:/qt/6.8.0/msvc2022_64/include/QtWebChannel/qwebchannelglobal.h \
+	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/QWebEngineSettings \
 	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qtwebenginecore-config.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qtwebenginecoreglobal.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebengineclientcertificateselection.h \
@@ -410,10 +421,12 @@ BD_course_autogen/timestamp: \
 	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginepage.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginepermission.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginequotarequest.h \
+	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineCore/qwebenginesettings.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineWidgets/QWebEngineView \
 	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineWidgets/qtwebenginewidgetsglobal.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWebEngineWidgets/qwebengineview.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/QApplication \
+	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/QDialog \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/QMainWindow \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/QWidget \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -423,6 +436,7 @@ BD_course_autogen/timestamp: \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qabstractspinbox.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qapplication.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qcombobox.h \
+	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qdialog.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qframe.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qlistview.h \
 	D:/qt/6.8.0/msvc2022_64/include/QtWidgets/qmainwindow.h \
@@ -1415,5 +1429,6 @@ BD_course_autogen/timestamp: \
 	D:/qt/6.8.0/msvc2022_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateVersionlessAliasTargets.cmake \
 	C:/Users/User/Documents/BD_course/BD_course/bookcardwidget.ui \
 	C:/Users/User/Documents/BD_course/BD_course/mainwindow.ui \
+	C:/Users/User/Documents/BD_course/BD_course/mapdialog.ui \
 	C:/Users/User/Documents/BD_course/BD_course/registration_window.ui \
 	C:/Program\ Files/CMake/bin/cmake.exe
