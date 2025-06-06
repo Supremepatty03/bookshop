@@ -16,7 +16,7 @@ public:
     ~BookCardWidget();
     void setBookInfo(const Book &book);
 
-    enum DisplayMode { StoreMode, CartMode, OrderMode, ArchiveMode };
+    enum DisplayMode { StoreMode, CartMode, OrderMode, ArchiveMode, AdminMode };
     void setMode(DisplayMode mode);
 
 signals:
@@ -24,7 +24,7 @@ signals:
     void addToCart(int bookID);
     void removeFromCart(int bookId);
     void singleOrderRequested(int bookId);
-
+    void deleteBookRequested(int bookId);
 private:
     Ui::BookCardWidget *ui;
     int m_bookId;

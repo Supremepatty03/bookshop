@@ -23,6 +23,8 @@ public:
     void loadProfileCombos();
     void saveUserProfile();
     void showUserOrders();
+    void showAdminBookList();
+    void populateComboBoxes();
 private:
     Ui::MainWindow *ui;
     int userID;
@@ -42,5 +44,9 @@ public slots:
     void on_profileButton();
     void on_outProfileButton();
     void on_returnFromUsersOrderButton();
+    void onDeleteBook(int bookId);
+    void on_addButton_clicked();
+    void on_addDeclinedButton();
+    void on_AdminButton();
 };
 #endif // MAINWINDOW_H

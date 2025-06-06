@@ -13,55 +13,30 @@ std::pair<int, QString> Registration_service::registerUser(const QString &userna
                                                            const QString &password,
                                                            const QString &confirmPassword,
                                                            const QString &role) {
-    // Проверка паролей
     if (password != confirmPassword) {
         return {-1, "Пароли не совпадают!"};
     }
 
-    // Проверка валидности роли
     if (role != "покупатель" && role != "админ") {
         return {-1, "Недопустимая роль пользователя!"};
     }
 
-    db_queries queryManager(db);
+    db_inserter inserter(db);
+    auto [userID, errorCode] = inserter.insertUser(username, password);
 
-    // Проверка существования пользователя
-    QVariant count = queryManager.ExecuteSelectQuery_SingleData(
-        "SELECT COUNT(*) FROM Пользователь WHERE логин = ?", username);
-
-    if (!count.isValid()) {
-        return {-1, "Ошибка проверки пользователя!"};
+    if (userID == -1) {
+        QString errorMessage;
+        switch (errorCode) {
+        case 1: errorMessage = "Ошибка подключения к базе данных."; break;
+        case 2: errorMessage = "Ошибка проверки пользователя."; break;
+        case 3: errorMessage = "Пользователь с таким логином уже существует."; break;
+        case 4: errorMessage = "Ошибка при добавлении пользователя."; break;
+        case 5: errorMessage = "Ошибка получения ID пользователя."; break;
+        case 6: errorMessage = "Ошибка фиксации транзакции."; break;
+        default: errorMessage = "Неизвестная ошибка."; break;
+        }
+        return {-1, errorMessage};
     }
 
-    if (count.toInt() > 0) {
-        return {-1, "Пользователь с таким логином уже существует!"};
-    }
-
-    // Генерация соли и хеша
-    QByteArray salt = queryManager.generateSalt(32);
-    QByteArray hashedPassword = queryManager.hashPassword(password, salt);
-
-    // Вставка нового пользователя
-    QSqlQuery query(db);
-    query.prepare("INSERT INTO Пользователь (логин, пароль, соль, роль) "
-                  "VALUES (?, ?, ?, ?)");
-    query.addBindValue(username);
-    query.addBindValue(hashedPassword);
-    query.addBindValue(salt);
-    query.addBindValue(role);
-
-    if (!query.exec()) {
-        qDebug() << "Registration error:" << query.lastError().text();
-        return {-1, "Ошибка регистрации: " + query.lastError().text()};
-    }
-
-    // Получение ID нового пользователя
-    QVariant id = queryManager.ExecuteSelectQuery_SingleData(
-        "SELECT id FROM Пользователь WHERE логин = ?", username);
-
-    if (!id.isValid()) {
-        return {-1, "Ошибка получения ID пользователя!"};
-    }
-
-    return {id.toInt(), ""};
+    return {userID, ""};
 }

@@ -83,6 +83,7 @@ public:
         horizontalLayout->addWidget(priceLabel);
 
         buttonLayout = new QVBoxLayout();
+        buttonLayout->setSpacing(5);
         buttonLayout->setObjectName("buttonLayout");
         detailsButton = new QPushButton(BookCardWidget);
         detailsButton->setObjectName("detailsButton");

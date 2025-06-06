@@ -20,8 +20,10 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -47,6 +49,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QLineEdit *lineEdit;
     QLabel *label;
+    QPushButton *AdminButton;
     QWidget *page_4;
     QLabel *label_2;
     QPushButton *lobbyButton;
@@ -111,6 +114,49 @@ public:
     QVBoxLayout *verticalLayout_12;
     QLineEdit *lineEdit_5;
     QPushButton *returnFromUsersOrderButton;
+    QWidget *page_addBook;
+    QWidget *horizontalLayoutWidget_3;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_4;
+    QLineEdit *titleLineEdit;
+    QWidget *horizontalLayoutWidget_4;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *label_5;
+    QComboBox *authorComboBox;
+    QWidget *horizontalLayoutWidget_5;
+    QHBoxLayout *horizontalLayout_6;
+    QLabel *label_6;
+    QComboBox *typeComboBox;
+    QWidget *horizontalLayoutWidget_6;
+    QHBoxLayout *horizontalLayout_7;
+    QLabel *label_13;
+    QComboBox *topicComboBox;
+    QWidget *horizontalLayoutWidget_13;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_14;
+    QSpinBox *priceSpinBox;
+    QWidget *horizontalLayoutWidget_14;
+    QHBoxLayout *horizontalLayout_15;
+    QLabel *label_15;
+    QComboBox *publisherComboBox;
+    QWidget *horizontalLayoutWidget_15;
+    QHBoxLayout *horizontalLayout_16;
+    QLabel *label_16;
+    QSpinBox *yearSpinBox;
+    QWidget *horizontalLayoutWidget_16;
+    QHBoxLayout *horizontalLayout_17;
+    QLabel *label_17;
+    QSpinBox *stockSpinBox;
+    QWidget *horizontalLayoutWidget_17;
+    QHBoxLayout *horizontalLayout_18;
+    QLabel *label_18;
+    QLineEdit *coverLineEdit;
+    QPushButton *addButton;
+    QWidget *horizontalLayoutWidget_18;
+    QHBoxLayout *horizontalLayout_19;
+    QLabel *label_19;
+    QTextEdit *infoTextEdit;
+    QPushButton *addDeclinedButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -198,6 +244,9 @@ public:
         font1.setFamilies({QString::fromUtf8("Viner Hand ITC")});
         font1.setPointSize(26);
         label->setFont(font1);
+        AdminButton = new QPushButton(page_3);
+        AdminButton->setObjectName("AdminButton");
+        AdminButton->setGeometry(QRect(1000, 10, 101, 22));
         stackedWidget_2->addWidget(page_3);
         page_4 = new QWidget();
         page_4->setObjectName("page_4");
@@ -481,8 +530,11 @@ public:
         scrollAreaWidgetContents_5 = new QWidget();
         scrollAreaWidgetContents_5->setObjectName("scrollAreaWidgetContents_5");
         scrollAreaWidgetContents_5->setGeometry(QRect(0, 0, 989, 519));
-        sizePolicy.setHeightForWidth(scrollAreaWidgetContents_5->sizePolicy().hasHeightForWidth());
-        scrollAreaWidgetContents_5->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(scrollAreaWidgetContents_5->sizePolicy().hasHeightForWidth());
+        scrollAreaWidgetContents_5->setSizePolicy(sizePolicy1);
         scrollAreaWidgetContents_5->setMinimumSize(QSize(989, 519));
         scrollAreaWidgetContents_5->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         verticalLayout_11 = new QVBoxLayout(scrollAreaWidgetContents_5);
@@ -503,6 +555,175 @@ public:
         returnFromUsersOrderButton->setObjectName("returnFromUsersOrderButton");
         returnFromUsersOrderButton->setGeometry(QRect(970, 220, 80, 22));
         stackedWidget_2->addWidget(page_usersOrders);
+        page_addBook = new QWidget();
+        page_addBook->setObjectName("page_addBook");
+        horizontalLayoutWidget_3 = new QWidget(page_addBook);
+        horizontalLayoutWidget_3->setObjectName("horizontalLayoutWidget_3");
+        horizontalLayoutWidget_3->setGeometry(QRect(210, 10, 160, 80));
+        horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget_3);
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        label_4 = new QLabel(horizontalLayoutWidget_3);
+        label_4->setObjectName("label_4");
+
+        horizontalLayout_4->addWidget(label_4);
+
+        titleLineEdit = new QLineEdit(horizontalLayoutWidget_3);
+        titleLineEdit->setObjectName("titleLineEdit");
+
+        horizontalLayout_4->addWidget(titleLineEdit);
+
+        horizontalLayoutWidget_4 = new QWidget(page_addBook);
+        horizontalLayoutWidget_4->setObjectName("horizontalLayoutWidget_4");
+        horizontalLayoutWidget_4->setGeometry(QRect(210, 90, 160, 80));
+        horizontalLayout_5 = new QHBoxLayout(horizontalLayoutWidget_4);
+        horizontalLayout_5->setObjectName("horizontalLayout_5");
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        label_5 = new QLabel(horizontalLayoutWidget_4);
+        label_5->setObjectName("label_5");
+
+        horizontalLayout_5->addWidget(label_5);
+
+        authorComboBox = new QComboBox(horizontalLayoutWidget_4);
+        authorComboBox->setObjectName("authorComboBox");
+
+        horizontalLayout_5->addWidget(authorComboBox);
+
+        horizontalLayoutWidget_5 = new QWidget(page_addBook);
+        horizontalLayoutWidget_5->setObjectName("horizontalLayoutWidget_5");
+        horizontalLayoutWidget_5->setGeometry(QRect(210, 170, 160, 80));
+        horizontalLayout_6 = new QHBoxLayout(horizontalLayoutWidget_5);
+        horizontalLayout_6->setObjectName("horizontalLayout_6");
+        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        label_6 = new QLabel(horizontalLayoutWidget_5);
+        label_6->setObjectName("label_6");
+
+        horizontalLayout_6->addWidget(label_6);
+
+        typeComboBox = new QComboBox(horizontalLayoutWidget_5);
+        typeComboBox->setObjectName("typeComboBox");
+
+        horizontalLayout_6->addWidget(typeComboBox);
+
+        horizontalLayoutWidget_6 = new QWidget(page_addBook);
+        horizontalLayoutWidget_6->setObjectName("horizontalLayoutWidget_6");
+        horizontalLayoutWidget_6->setGeometry(QRect(210, 250, 160, 80));
+        horizontalLayout_7 = new QHBoxLayout(horizontalLayoutWidget_6);
+        horizontalLayout_7->setObjectName("horizontalLayout_7");
+        horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
+        label_13 = new QLabel(horizontalLayoutWidget_6);
+        label_13->setObjectName("label_13");
+
+        horizontalLayout_7->addWidget(label_13);
+
+        topicComboBox = new QComboBox(horizontalLayoutWidget_6);
+        topicComboBox->setObjectName("topicComboBox");
+
+        horizontalLayout_7->addWidget(topicComboBox);
+
+        horizontalLayoutWidget_13 = new QWidget(page_addBook);
+        horizontalLayoutWidget_13->setObjectName("horizontalLayoutWidget_13");
+        horizontalLayoutWidget_13->setGeometry(QRect(210, 330, 160, 80));
+        horizontalLayout_8 = new QHBoxLayout(horizontalLayoutWidget_13);
+        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        label_14 = new QLabel(horizontalLayoutWidget_13);
+        label_14->setObjectName("label_14");
+
+        horizontalLayout_8->addWidget(label_14);
+
+        priceSpinBox = new QSpinBox(horizontalLayoutWidget_13);
+        priceSpinBox->setObjectName("priceSpinBox");
+
+        horizontalLayout_8->addWidget(priceSpinBox);
+
+        horizontalLayoutWidget_14 = new QWidget(page_addBook);
+        horizontalLayoutWidget_14->setObjectName("horizontalLayoutWidget_14");
+        horizontalLayoutWidget_14->setGeometry(QRect(210, 410, 160, 80));
+        horizontalLayout_15 = new QHBoxLayout(horizontalLayoutWidget_14);
+        horizontalLayout_15->setObjectName("horizontalLayout_15");
+        horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
+        label_15 = new QLabel(horizontalLayoutWidget_14);
+        label_15->setObjectName("label_15");
+
+        horizontalLayout_15->addWidget(label_15);
+
+        publisherComboBox = new QComboBox(horizontalLayoutWidget_14);
+        publisherComboBox->setObjectName("publisherComboBox");
+
+        horizontalLayout_15->addWidget(publisherComboBox);
+
+        horizontalLayoutWidget_15 = new QWidget(page_addBook);
+        horizontalLayoutWidget_15->setObjectName("horizontalLayoutWidget_15");
+        horizontalLayoutWidget_15->setGeometry(QRect(210, 490, 160, 80));
+        horizontalLayout_16 = new QHBoxLayout(horizontalLayoutWidget_15);
+        horizontalLayout_16->setObjectName("horizontalLayout_16");
+        horizontalLayout_16->setContentsMargins(0, 0, 0, 0);
+        label_16 = new QLabel(horizontalLayoutWidget_15);
+        label_16->setObjectName("label_16");
+
+        horizontalLayout_16->addWidget(label_16);
+
+        yearSpinBox = new QSpinBox(horizontalLayoutWidget_15);
+        yearSpinBox->setObjectName("yearSpinBox");
+
+        horizontalLayout_16->addWidget(yearSpinBox);
+
+        horizontalLayoutWidget_16 = new QWidget(page_addBook);
+        horizontalLayoutWidget_16->setObjectName("horizontalLayoutWidget_16");
+        horizontalLayoutWidget_16->setGeometry(QRect(210, 570, 160, 80));
+        horizontalLayout_17 = new QHBoxLayout(horizontalLayoutWidget_16);
+        horizontalLayout_17->setObjectName("horizontalLayout_17");
+        horizontalLayout_17->setContentsMargins(0, 0, 0, 0);
+        label_17 = new QLabel(horizontalLayoutWidget_16);
+        label_17->setObjectName("label_17");
+
+        horizontalLayout_17->addWidget(label_17);
+
+        stockSpinBox = new QSpinBox(horizontalLayoutWidget_16);
+        stockSpinBox->setObjectName("stockSpinBox");
+
+        horizontalLayout_17->addWidget(stockSpinBox);
+
+        horizontalLayoutWidget_17 = new QWidget(page_addBook);
+        horizontalLayoutWidget_17->setObjectName("horizontalLayoutWidget_17");
+        horizontalLayoutWidget_17->setGeometry(QRect(210, 650, 160, 80));
+        horizontalLayout_18 = new QHBoxLayout(horizontalLayoutWidget_17);
+        horizontalLayout_18->setObjectName("horizontalLayout_18");
+        horizontalLayout_18->setContentsMargins(0, 0, 0, 0);
+        label_18 = new QLabel(horizontalLayoutWidget_17);
+        label_18->setObjectName("label_18");
+
+        horizontalLayout_18->addWidget(label_18);
+
+        coverLineEdit = new QLineEdit(horizontalLayoutWidget_17);
+        coverLineEdit->setObjectName("coverLineEdit");
+
+        horizontalLayout_18->addWidget(coverLineEdit);
+
+        addButton = new QPushButton(page_addBook);
+        addButton->setObjectName("addButton");
+        addButton->setGeometry(QRect(290, 730, 80, 22));
+        horizontalLayoutWidget_18 = new QWidget(page_addBook);
+        horizontalLayoutWidget_18->setObjectName("horizontalLayoutWidget_18");
+        horizontalLayoutWidget_18->setGeometry(QRect(380, 650, 160, 80));
+        horizontalLayout_19 = new QHBoxLayout(horizontalLayoutWidget_18);
+        horizontalLayout_19->setObjectName("horizontalLayout_19");
+        horizontalLayout_19->setContentsMargins(0, 0, 0, 0);
+        label_19 = new QLabel(horizontalLayoutWidget_18);
+        label_19->setObjectName("label_19");
+
+        horizontalLayout_19->addWidget(label_19);
+
+        infoTextEdit = new QTextEdit(horizontalLayoutWidget_18);
+        infoTextEdit->setObjectName("infoTextEdit");
+
+        horizontalLayout_19->addWidget(infoTextEdit);
+
+        addDeclinedButton = new QPushButton(page_addBook);
+        addDeclinedButton->setObjectName("addDeclinedButton");
+        addDeclinedButton->setGeometry(QRect(590, 10, 80, 22));
+        stackedWidget_2->addWidget(page_addBook);
 
         verticalLayout_2->addWidget(stackedWidget_2);
 
@@ -517,7 +738,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget_2->setCurrentIndex(3);
+        stackedWidget_2->setCurrentIndex(0);
         AvailableBooks->setCurrentIndex(0);
         cartBooks->setCurrentIndex(0);
 
@@ -532,6 +753,7 @@ public:
         cartButton->setText(QCoreApplication::translate("MainWindow", "\320\232\320\276\321\200\320\267\320\270\320\275\320\260", nullptr));
         lineEdit->setText(QCoreApplication::translate("MainWindow", "\320\242\320\276\320\262\320\260\321\200\321\213", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "BookShop", nullptr));
+        AdminButton->setText(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\272\320\275\320\270\320\263\321\203", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "BookShop", nullptr));
         lobbyButton->setText(QCoreApplication::translate("MainWindow", "\320\222 \320\272\320\260\321\202\320\260\320\273\320\276\320\263", nullptr));
         lineEdit_2->setText(QCoreApplication::translate("MainWindow", "\320\232\320\276\321\200\320\267\320\270\320\275\320\260", nullptr));
@@ -554,6 +776,18 @@ public:
         outProfileButton->setText(QCoreApplication::translate("MainWindow", "\320\222 \320\272\320\260\321\202\320\260\320\273\320\276\320\263", nullptr));
         lineEdit_5->setText(QCoreApplication::translate("MainWindow", "\320\230\321\201\321\202\320\276\321\200\320\270\321\217 \320\277\320\276\320\272\321\203\320\277\320\276\320\272", nullptr));
         returnFromUsersOrderButton->setText(QCoreApplication::translate("MainWindow", "\320\222\320\265\321\200\320\275\321\203\321\202\321\214\321\201\321\217", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "\320\220\320\262\321\202\320\276\321\200", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "\320\222\320\270\320\264", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "\320\242\320\265\320\274\320\260\321\202\320\270\320\272\320\260", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "\320\246\320\265\320\275\320\260", nullptr));
+        label_15->setText(QCoreApplication::translate("MainWindow", "\320\230\320\267\320\264\320\260\321\202\320\265\320\273\321\214\321\201\321\202\320\262\320\276", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "\320\223\320\276\320\264 \320\270\320\267\320\264\320\260\320\275\320\270\321\217", nullptr));
+        label_17->setText(QCoreApplication::translate("MainWindow", "\320\222 \320\275\320\260\320\273\320\270\321\207\320\270\320\270", nullptr));
+        label_18->setText(QCoreApplication::translate("MainWindow", "\320\236\320\261\320\273\320\276\320\266\320\272\320\260", nullptr));
+        addButton->setText(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
+        label_19->setText(QCoreApplication::translate("MainWindow", "\320\230\320\275\321\204\320\276\321\200\320\274\320\260\321\206\320\270\321\217", nullptr));
+        addDeclinedButton->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\260", nullptr));
     } // retranslateUi
 
 };

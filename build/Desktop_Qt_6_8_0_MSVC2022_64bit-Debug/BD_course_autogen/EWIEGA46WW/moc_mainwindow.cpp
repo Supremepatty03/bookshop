@@ -52,7 +52,11 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_confirmOrderButton",
     "on_profileButton",
     "on_outProfileButton",
-    "on_returnFromUsersOrderButton"
+    "on_returnFromUsersOrderButton",
+    "onDeleteBook",
+    "on_addButton_clicked",
+    "on_addDeclinedButton",
+    "on_AdminButton"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -65,7 +69,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -73,19 +77,23 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   92,    2, 0x0a,    1 /* Public */,
-       4,    1,   95,    2, 0x0a,    3 /* Public */,
-       6,    0,   98,    2, 0x0a,    5 /* Public */,
-       7,    0,   99,    2, 0x0a,    6 /* Public */,
-       8,    1,  100,    2, 0x0a,    7 /* Public */,
-       9,    1,  103,    2, 0x0a,    9 /* Public */,
-      11,    1,  106,    2, 0x0a,   11 /* Public */,
-      12,    0,  109,    2, 0x0a,   13 /* Public */,
-      13,    0,  110,    2, 0x0a,   14 /* Public */,
-      14,    1,  111,    2, 0x0a,   15 /* Public */,
-      15,    0,  114,    2, 0x0a,   17 /* Public */,
-      16,    0,  115,    2, 0x0a,   18 /* Public */,
-      17,    0,  116,    2, 0x0a,   19 /* Public */,
+       1,    1,  116,    2, 0x0a,    1 /* Public */,
+       4,    1,  119,    2, 0x0a,    3 /* Public */,
+       6,    0,  122,    2, 0x0a,    5 /* Public */,
+       7,    0,  123,    2, 0x0a,    6 /* Public */,
+       8,    1,  124,    2, 0x0a,    7 /* Public */,
+       9,    1,  127,    2, 0x0a,    9 /* Public */,
+      11,    1,  130,    2, 0x0a,   11 /* Public */,
+      12,    0,  133,    2, 0x0a,   13 /* Public */,
+      13,    0,  134,    2, 0x0a,   14 /* Public */,
+      14,    1,  135,    2, 0x0a,   15 /* Public */,
+      15,    0,  138,    2, 0x0a,   17 /* Public */,
+      16,    0,  139,    2, 0x0a,   18 /* Public */,
+      17,    0,  140,    2, 0x0a,   19 /* Public */,
+      18,    1,  141,    2, 0x0a,   20 /* Public */,
+      19,    0,  144,    2, 0x0a,   22 /* Public */,
+      20,    0,  145,    2, 0x0a,   23 /* Public */,
+      21,    0,  146,    2, 0x0a,   24 /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -98,6 +106,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::QString,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   10,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -145,6 +157,15 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_outProfileButton'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_returnFromUsersOrderButton'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onDeleteBook'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_addButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_addDeclinedButton'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_AdminButton'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -170,6 +191,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 10: _t->on_profileButton(); break;
         case 11: _t->on_outProfileButton(); break;
         case 12: _t->on_returnFromUsersOrderButton(); break;
+        case 13: _t->onDeleteBook((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 14: _t->on_addButton_clicked(); break;
+        case 15: _t->on_addDeclinedButton(); break;
+        case 16: _t->on_AdminButton(); break;
         default: ;
         }
     }
@@ -194,13 +219,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 17)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 13;
+        _id -= 17;
     }
     return _id;
 }

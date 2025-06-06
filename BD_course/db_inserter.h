@@ -8,12 +8,13 @@ class db_inserter
 {
 public:
     explicit db_inserter(QSqlDatabase &database) : db(database) {}
-    int insertUser(const QString& username, const QString& password);
+    std::pair<int, int> insertUser(const QString& login, const QString& password);
     bool putBookInCart(const int userID, const int bookID);
     bool putBookInOrder(const int userID, const int bookID);
     bool saveUserProfile(int userID, const QString& name, const QString& lastName,
                          const QString& secondName, const QString& phone,
                          const QString& city, const QString& category);
+    bool logLogin(int userID);
 private:
     QSqlDatabase &db;
 };

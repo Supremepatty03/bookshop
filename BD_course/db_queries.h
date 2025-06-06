@@ -29,6 +29,8 @@ public:
     bool removeBookFromCart(int userID, int bookID);
     bool getUserProfile(int userID, QMap<QString, QString>& profileData);
     QVector<Book> getUserPurchases(int userID);
+    QString getUserRole(int userId);
+    void deleteBook(int bookId);
 private:
     QSqlDatabase &db;
 };

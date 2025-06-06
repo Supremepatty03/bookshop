@@ -14,78 +14,76 @@ std::optional<int> UserRepository::getUserId(const QString &username) {
     return std::nullopt;
 }
 
-int db_inserter::insertUser(const QString& login, const QString& password) {
+std::pair<int, int> db_inserter::insertUser(const QString& login, const QString& password) {
     if (!db.isOpen() && !db.open()) {
         qCritical() << "Database connection failed";
-        return 1;
+        return {-1, 1};
     }
 
-    // Начинаем транзакцию
     db.transaction();
 
     try {
-        // 1. Проверка существования пользователя
         QSqlQuery checkQuery(db);
         if (!checkQuery.prepare("SELECT COUNT(*) FROM Пользователь WHERE логин = ?")) {
-            qCritical() << "Prepare check failed:" << checkQuery.lastError().text();
             db.rollback();
-            return 2;
+            return {-1, 2};
         }
 
         checkQuery.addBindValue(login);
-
-        if (!checkQuery.exec()) {
-            qCritical() << "Check query failed:" << checkQuery.lastError().text();
+        if (!checkQuery.exec() || !checkQuery.next()) {
             db.rollback();
-            return 2;
-        }
-
-        if (!checkQuery.next()) {
-            db.rollback();
-            return 2;
+            return {-1, 2};
         }
 
         if (checkQuery.value(0).toInt() > 0) {
             db.rollback();
-            return 3;
+            return {-1, 3}; // Пользователь уже существует
         }
 
-        // 2. Генерация соли и хеша
         QByteArray salt = db_queries::generateSalt(32);
         QByteArray hashedPassword = db_queries::hashPassword(password, salt);
 
-        // 3. Вставка пользователя
         QSqlQuery insertQuery(db);
         if (!insertQuery.prepare(
                 "INSERT INTO Пользователь (логин, пароль, соль, роль) "
-                "VALUES (:логин, :пароль, :соль, 'покупатель')"))
-        {
-            qCritical() << "Prepare insert failed:" << insertQuery.lastError().text();
+                "VALUES (?, ?, ?, ?)")) {
             db.rollback();
-            return 4;
+            return {-1, 4};
         }
-
-        insertQuery.bindValue(":логин", login);
-        insertQuery.bindValue(":пароль", hashedPassword);
-        insertQuery.bindValue(":соль", salt);
+        QString role = "покупатель";
+        insertQuery.addBindValue(login);
+        insertQuery.addBindValue(hashedPassword);
+        insertQuery.addBindValue(salt);
+        insertQuery.addBindValue(role);
 
         if (!insertQuery.exec()) {
-            qCritical() << "Insert failed:" << insertQuery.lastError().text();
             db.rollback();
-            return 4;
+            return {-1, 4};
         }
 
-        // Фиксируем транзакцию
+        QSqlQuery idQuery(db);
+        if (!idQuery.prepare("SELECT id FROM Пользователь WHERE логин = ?")) {
+            db.rollback();
+            return {-1, 5};
+        }
+
+        idQuery.addBindValue(login);
+        if (!idQuery.exec() || !idQuery.next()) {
+            db.rollback();
+            return {-1, 5};
+        }
+
+        int userId = idQuery.value(0).toInt();
+
         if (!db.commit()) {
-            qCritical() << "Commit failed";
             db.rollback();
-            return 4;
+            return {-1, 6};
         }
 
-        return 0;
+        return {userId, 0}; // Успешно, возвращаем userID
     } catch (...) {
         db.rollback();
-        return 4;
+        return {-1, 7};
     }
 }
 bool db_inserter::putBookInCart(const int userID, const int bookID) {
@@ -169,4 +167,15 @@ bool db_inserter::saveUserProfile(int userID, const QString& name, const QString
 
     return true;
 }
+bool db_inserter::logLogin(int userID) {
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO Лог_входа (id_пользователя, время_входа) VALUES (?, ?)");
+    query.addBindValue(userID);
+    query.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
 
+    if (!query.exec()) {
+        qDebug() << "Ошибка при записи входа:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}

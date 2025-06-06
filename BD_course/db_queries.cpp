@@ -287,11 +287,24 @@ QVector<Book> db_queries::getUserPurchases(int userID) {
         b.book_id   = query.value(0).toInt();
         b.title     = query.value(1).toString();
         b.author    = query.value(2).toString();
-        b.genre     = query.value(3).toString();  // или берите из другого поля
+        b.genre     = query.value(3).toString();
         b.price     = query.value(4).toDouble();
         b.coverPath = query.value(5).toString();
         b.orderDate = QDate::fromString(query.value(6).toString(), Qt::ISODate);
         list.append(b);
     }
     return list;
+}
+QString db_queries::getUserRole(int userID) {
+    QVariant res = ExecuteSelectQuery_SingleData(
+        "SELECT роль FROM Пользователь WHERE id = ?", QString::number(userID));
+    return res.toString();
+}
+void db_queries::deleteBook(int bookId) {
+    QSqlQuery query(db);
+    query.prepare("DELETE FROM Книга WHERE Инвентарный_номер = ?");
+    query.addBindValue(bookId);
+    if (!query.exec()) {
+        qWarning() << "Ошибка при удалении книги:" << query.lastError().text();
+    }
 }

@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent, QSqlDatabase &database)
     connect(ui->lobbyButton, &QPushButton::clicked, this, &MainWindow::on_lobbyButton);
     connect(ui->cartButton, &QPushButton::clicked, this, &MainWindow::on_cartButton);
     connect(ui->profileButton, &QPushButton::clicked, this, &MainWindow::on_profileButton);
+    connect(ui->addDeclinedButton, &QPushButton::clicked, this, &MainWindow::on_addDeclinedButton);
 }
 MainWindow::~MainWindow()
 {
@@ -30,37 +31,50 @@ MainWindow::~MainWindow()
 void MainWindow::on_login_success(int userID) {
     this->userID = userID;
     this->showMaximized();
+
+    db_inserter inserter(db);
+    inserter.logLogin(userID); // лог входа
+
     ui->stackedWidget_2->setCurrentWidget(ui->page_3);
+
     db_queries query_manager(db);
+    QString role = query_manager.getUserRole(userID);
 
     // Настраиваем scrollArea
     ui->scrollArea->setWidgetResizable(true);
     ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
-    // Получаем книги
     QVector<Book> books = query_manager.getAllBooks();
 
-    // Новый контейнер + layout
     QWidget *container = new QWidget;
     QVBoxLayout *layout = new QVBoxLayout(container);
     layout->setSpacing(15);
     layout->setContentsMargins(10,10,10,10);
 
-    // Добавляем карточки
     for (const Book &book : books) {
         BookCardWidget *card = new BookCardWidget;
         card->setBookInfo(book);
-        card->setMode(BookCardWidget::StoreMode);
-        card->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        connect(card, &BookCardWidget::addToCart, this, &MainWindow::on_addToCart);
-        layout->addWidget(card);
 
-        connect(card, &BookCardWidget::detailsRequested,
-                this, &MainWindow::on_detailsRequested);
+        // Выбор режима по роли
+        if (role == "админ") {
+            card->setMode(BookCardWidget::AdminMode);
+            connect(card, &BookCardWidget::deleteBookRequested, this, &MainWindow::onDeleteBook);
+            connect(ui->AdminButton, &QPushButton::clicked, this, &MainWindow::on_AdminButton);
+            ui->AdminButton->setVisible(true);
+            ui->cartButton->setVisible(false);
+
+        } else {
+            card->setMode(BookCardWidget::StoreMode);
+            connect(card, &BookCardWidget::addToCart, this, &MainWindow::on_addToCart);
+            ui->AdminButton->setVisible(false);
+        }
+
+        connect(card, &BookCardWidget::detailsRequested, this, &MainWindow::on_detailsRequested);
+
+        layout->addWidget(card);
     }
     layout->addStretch();
 
-    // Вешаем на scrollArea
     ui->scrollArea->setWidget(container);
 }
 void MainWindow::on_detailsRequested(int bookID){
@@ -254,6 +268,8 @@ void MainWindow::on_profileButton() {
     connect(ui->saveProfileButton, &QPushButton::clicked, this, &MainWindow::saveUserProfile);
     connect(ui->outProfileButton, &QPushButton::clicked, this, &MainWindow::on_outProfileButton);
     connect(ui->orderAllButton_2, &QPushButton::clicked, this, &MainWindow::showUserOrders);
+    connect(ui->returnFromUsersOrderButton, &QPushButton::clicked, this, &MainWindow::on_returnFromUsersOrderButton);
+
     loadProfileCombos();
 
     db_queries queryManager(db);
@@ -279,33 +295,128 @@ void MainWindow::on_profileButton() {
 void MainWindow::on_outProfileButton(){
     ui->stackedWidget_2->setCurrentWidget(ui->page_3);
 }
-void MainWindow::showUserOrders()
-{
-    connect(ui->returnFromUsersOrderButton, &QPushButton::clicked, this, &MainWindow::on_returnFromUsersOrderButton);
+void MainWindow::showUserOrders() {
     ui->stackedWidget_2->setCurrentWidget(ui->page_usersOrders);
+
+    // 1. Очистка layout
     QLayoutItem *child;
     while ((child = ui->verticalLayout_12->takeAt(0)) != nullptr) {
-        if (QWidget *w = child->widget()) {
-            delete w;
-        }
+        if (QWidget *w = child->widget()) delete w;
         delete child;
     }
 
-    db_queries queryManager(db);
-    auto purchases = db_queries(db).getUserPurchases(userID);
-    for (const auto &row : purchases) {
-        BookCardWidget *card = new BookCardWidget(this);
+    // 2. Получаем данные
+    db_queries queries(db);
+    QVector<Book> orders = queries.getUserPurchases(userID);
+    ui->scrollArea_5->setWidgetResizable(true);
+    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    ui->scrollAreaWidgetContents_5->setMinimumSize(0, 0);
+    ui->scrollAreaWidgetContents_5->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+  // 3. Добавляем карточки
+    for (const Book &b : orders) {
+        BookCardWidget *card = new BookCardWidget;
         card->setMode(BookCardWidget::ArchiveMode);
-        card->findChild<QLabel*>("titleLabel")->setText(row[1]);
-        card->findChild<QLabel*>("authorLabel")->setText(row[2]);
-        card->findChild<QLabel*>("genreLabel")->setText(QString());
-        card->findChild<QLabel*>("priceLabel")->setText(row[3] + " ₽");
-        card->findChild<QLabel*>("orderDateLabel")->setText("Дата заказа: " + row[4]);
-
+        card->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        card->setBookInfo(b);
         ui->verticalLayout_12->addWidget(card);
+        connect(card, &BookCardWidget::detailsRequested, this, &MainWindow::on_detailsRequested);
+
+
     }
+
     ui->verticalLayout_12->addStretch();
 }
 void MainWindow::on_returnFromUsersOrderButton(){
     ui->stackedWidget_2->setCurrentWidget(ui->page_profile);
+}
+void MainWindow::onDeleteBook(int bookId) {
+    db_queries query_manager(db);
+    query_manager.deleteBook(bookId); // напиши такую функцию в db_queries
+    on_login_success(userID); // обновляем отображение
+}
+void MainWindow::populateComboBoxes() {
+    ui->authorComboBox->clear();
+    ui->typeComboBox->clear();
+    ui->topicComboBox->clear();
+    ui->publisherComboBox->clear();
+    QSqlQuery query;
+
+    // Автор
+    query.exec("SELECT Автор FROM Автор");
+    while (query.next()) {
+        ui->authorComboBox->addItem(query.value(0).toString());
+    }
+
+    // Вид книги
+    query.exec("SELECT Название_вида FROM Вид_книги");
+    while (query.next()) {
+        ui->typeComboBox->addItem(query.value(0).toString());
+    }
+
+    // Тематика
+    query.exec("SELECT Тематика_книги FROM Тематика_книги");
+    while (query.next()) {
+        ui->topicComboBox->addItem(query.value(0).toString());
+    }
+
+    // Издательство
+    query.exec("SELECT Название_издательства FROM Издательство");
+    while (query.next()) {
+        ui->publisherComboBox->addItem(query.value(0).toString());
+    }
+}
+void MainWindow::on_addButton_clicked() {
+
+    QString title = ui->titleLineEdit->text().trimmed();
+    QString author = ui->authorComboBox->currentText().trimmed();
+    QString type = ui->typeComboBox->currentText().trimmed();
+    QString topic = ui->topicComboBox->currentText().trimmed();
+    double price = ui->priceSpinBox->value();
+    QString publisher = ui->publisherComboBox->currentText().trimmed();
+    int year = ui->yearSpinBox->value();
+    int stock = ui->stockSpinBox->value();
+    QString cover = ui->coverLineEdit->text().trimmed();
+    QString info = ui->infoTextEdit->toPlainText().trimmed();
+
+    if (title.isEmpty() || author.isEmpty() || type.isEmpty() || topic.isEmpty() ||
+        price <= 0 || publisher.isEmpty() || year <= 0 || stock <= 0 ||
+        cover.isEmpty() || info.isEmpty()) {
+        QMessageBox::warning(this, "Ошибка", "Все поля должны быть заполнены и корректны.");
+        return;
+    }
+
+    // Вставка в БД
+    QSqlQuery query;
+    query.prepare(R"(
+        INSERT INTO Книга (Название_книги, Автор, Вид_книги, Тематика,
+                           Цена, Издательство, Год_издания,
+                           Кол_во_купленных, Кол_во_оставшихся,
+                           Обложка, Информация)
+        VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?)
+    )");
+
+    query.addBindValue(title);
+    query.addBindValue(author);
+    query.addBindValue(type);
+    query.addBindValue(topic);
+    query.addBindValue(price);
+    query.addBindValue(publisher);
+    query.addBindValue(year);
+    query.addBindValue(stock);
+    query.addBindValue(cover);
+    query.addBindValue(info);
+
+    if (!query.exec()) {
+        QMessageBox::critical(this, "Ошибка", "Не удалось добавить книгу: " + query.lastError().text());
+    } else {
+        QMessageBox::information(this, "Успех", "Книга успешно добавлена.");
+        this->close();
+    }
+}
+void MainWindow::on_AdminButton(){
+    populateComboBoxes();
+    ui->stackedWidget_2->setCurrentWidget(ui->page_addBook);
+}
+void MainWindow::on_addDeclinedButton(){
+    ui->stackedWidget_2->setCurrentWidget(ui->page_3);
 }
